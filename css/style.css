@@ -36,11 +36,9 @@ body {
   margin: 20px 100px;
   height: 550px;
   width: calc(100% - 200px);
-  border: 2px solid red;
 }
 
 .col {
-  border: 2px solid blueviolet;
   height: 100%;
 }
 
@@ -50,7 +48,8 @@ body {
   padding: 0 20px;
 }
 
-.my-profile img {
+.my-profile img,
+.profile img {
   max-width: 40px;
   border-radius: 50%;
   object-fit: contain;
@@ -64,6 +63,7 @@ body {
   background-color: #8edafc;
   color: white;
   height: 60px;
+  padding: 0 20px;
 
   display: flex;
   align-items: center;
@@ -113,4 +113,39 @@ body {
   width: 300px;
   font-size: 10px;
   height: 25px;
+}
+
+/* contact section */
+#contact-section {
+  background-color: #fff;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#contact-section .contact {
+  height: 50px;
+  width: 100%;
+  padding: 5px 20px;
+
+  border-top: 1px solid #e9ebeb;
+}
+
+#contact-section .contact:hover {
+  background-color: #e9ebeb;
+}
+
+#contact-section .last-sent-message,
+#contact-section .time {
+  color: var(--main-color);
+  font-size: 10px;
+}
+
+#contact-section .time {
+  text-align: end;
+  align-self: flex-start;
+}
+
+#contact-section .profile-info,
+.col-header .profile-info {
+  line-height: 13px;
 }

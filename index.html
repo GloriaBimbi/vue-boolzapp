@@ -71,21 +71,37 @@
             <input type="text" placeholder="Cerca o inizia una nuova chat" />
           </div>
           <!-- contacts section -->
-          <div id="contact-section"></div>
+          <div id="contact-section">
+            <div
+              v-for="(contact, index) in contacts"
+              class="contact d-container"
+            >
+              <div class="profile d-container">
+                <img
+                  :src="`./img/avatar_${index + 1}.jpg`"
+                  alt="contact profile picture"
+                />
+                <div class="profile-info">
+                  <div class="contact-names">{{ contact.name }}</div>
+                  <span class="last-sent-message"
+                    >Ultimo messaggio inviato</span
+                  >
+                </div>
+              </div>
+              <div class="time">12:00</div>
+            </div>
+          </div>
         </div>
         <!-- RIGHT COLUMN -->
         <div class="col col-8">
           <!-- col header -->
           <div class="col-header d-container">
-            <div v-for="(contact, index) in contacts" class="my-profile">
-              <img
-                :src="`./img/avatar_${index + 1}.jpg`"
-                alt="my profile picture"
-              />
-              <span class="contact-names"> {{contact.name}} </span>
-              <span class="dark-grey-element">
-                Ultimo accesso: {{contact.messages.date}}
-              </span>
+            <div class="my-profile d-container">
+              <img :src="`./img/avatar_1.jpg`" alt="my profile picture" />
+              <div class="profile-info">
+                <div class="contact-names">Fabio</div>
+                <span class="dark-grey-element"> Ultimo accesso: </span>
+              </div>
             </div>
             <div class="icons">
               <i class="fa-solid fa-magnifying-glass"></i>
