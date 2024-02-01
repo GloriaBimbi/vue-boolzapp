@@ -86,3 +86,31 @@ body {
 #notification-section > div {
   line-height: 13px;
 }
+
+/* input section */
+#input-section {
+  height: 30px;
+  padding: 7px;
+  background-color: #fafafa;
+  color: var(--main-color);
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#input-section .searc-icon {
+  border: 1px solid #fafafa;
+  background-color: white;
+  font-size: 10px;
+  padding: 8px 15px;
+  height: 25px;
+}
+
+#input-section input {
+  border-radius: 0;
+  border: 1px solid #fafafa;
+  width: 300px;
+  font-size: 10px;
+  height: 25px;
+}
