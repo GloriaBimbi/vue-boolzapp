@@ -58,3 +58,31 @@ body {
 }
 
 /* LEFT COLUMN */
+
+/* notification section */
+#notification-section {
+  background-color: #8edafc;
+  color: white;
+  height: 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.bell-icon {
+  padding: 10px 8px;
+  border-radius: 50%;
+  background-color: white;
+  color: #8edafc;
+}
+
+#notification-section a {
+  color: var(--dark-grey);
+  font-size: 10px;
+}
+
+#notification-section > div {
+  line-height: 13px;
+}
