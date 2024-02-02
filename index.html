@@ -95,7 +95,7 @@
         <!-- RIGHT COLUMN -->
         <div class="col col-8">
           <!-- col header -->
-          <div class="col-header d-container">
+          <div class="col-header d-container col-header-right-col">
             <div class="my-profile d-container">
               <img :src="`./img/avatar_1.jpg`" alt="my profile picture" />
               <div class="profile-info">
@@ -108,6 +108,29 @@
               <i class="fa-solid fa-paperclip"></i>
               <i class="fa-solid fa-ellipsis-vertical"></i>
             </div>
+          </div>
+          <!-- messages section -->
+          <div id="messages-section">
+            <div class="messages-container">
+              <div class="message their-message">
+                <span class="message-text">Ciao, ti ricordi di me?</span>
+                <span class="message-time">12:00</span>
+              </div>
+              <div class="message my-message">
+                <span class="message-text">No, chi sei?</span>
+                <span class="message-time">12:01</span>
+              </div>
+            </div>
+          </div>
+          <!-- chat section -->
+          <div id="chat-section" class="d-container">
+            <i class="fa-regular fa-face-smile"></i>
+            <input
+              type="text"
+              placeholder="Scrivi un messaggio"
+              id="tipe-a-message"
+            />
+            <i class="fa-solid fa-microphone"></i>
           </div>
         </div>
       </div>
