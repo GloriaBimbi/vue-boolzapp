@@ -74,6 +74,7 @@
           <div id="contact-section">
             <div
               v-for="(contact, index) in contacts"
+              @click="setActiveIndex(index)"
               class="contact d-container"
             >
               <div class="profile d-container">
@@ -84,11 +85,13 @@
                 <div class="profile-info">
                   <div class="contact-names">{{ contact.name }}</div>
                   <span class="last-sent-message"
-                    >Ultimo messaggio inviato</span
+                    >{{ getLastMessage(contact.messages) }}</span
                   >
                 </div>
               </div>
-              <div class="time">12:00</div>
+              <div class="time">
+                {{getAccessFromLastMessage(contact.messages)}}
+              </div>
             </div>
           </div>
         </div>
@@ -97,10 +100,16 @@
           <!-- col header -->
           <div class="col-header d-container col-header-right-col">
             <div class="my-profile d-container">
-              <img :src="`./img/avatar_1.jpg`" alt="my profile picture" />
+              <img :src="activeContact.avatar" alt="my profile picture" />
               <div class="profile-info">
-                <div class="contact-names">Fabio</div>
-                <span class="dark-grey-element"> Ultimo accesso: </span>
+                <div class="contact-names">{{activeContact.name}}</div>
+                <span
+                  v-if="activeContact.messages.length"
+                  class="dark-grey-element"
+                >
+                  Ultimo accesso:
+                  {{getAccessFromLastMessage(activeContact.messages)}}</span
+                >
               </div>
             </div>
             <div class="icons">
@@ -111,14 +120,16 @@
           </div>
           <!-- messages section -->
           <div id="messages-section">
-            <div class="messages-container">
-              <div class="message their-message">
-                <span class="message-text">Ciao, ti ricordi di me?</span>
-                <span class="message-time">12:00</span>
-              </div>
-              <div class="message my-message">
-                <span class="message-text">No, chi sei?</span>
-                <span class="message-time">12:01</span>
+            <div
+              v-for="message in activeContact.messages"
+              class="messages-container"
+            >
+              <div
+                :class="(message.status == 'sent') ? 'my-message' : 'their-message' "
+                class="message"
+              >
+                <span class="message-text"> {{message.message}} </span>
+                <span class="message-time">{{message.date}}</span>
               </div>
             </div>
           </div>

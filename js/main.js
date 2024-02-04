@@ -2,6 +2,7 @@ const { createApp } = Vue;
 const app = createApp({
   data() {
     return {
+      activeIndex: 0,
       contacts: [
         {
           name: "Michele",
@@ -168,7 +169,28 @@ const app = createApp({
     };
   },
 
-  methods: {},
+  computed: {
+    activeContact() {
+      return this.contacts[this.activeIndex];
+    },
+  },
+
+  methods: {
+    getLastMessage(messages) {
+      const lastMessage = messages[messages.length - 1];
+      return lastMessage.message;
+    },
+    getAccessFromLastMessage(messages) {
+      const sentMessages = messages.filter(
+        (message) => message.status == "sent"
+      );
+      const lastMessage = sentMessages[sentMessages.length - 1];
+      return lastMessage.date;
+    },
+    setActiveIndex(newIndex) {
+      this.activeIndex = newIndex;
+    },
+  },
   mounted() {},
 });
 
