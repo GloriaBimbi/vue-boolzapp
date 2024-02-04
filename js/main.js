@@ -3,6 +3,11 @@ const app = createApp({
   data() {
     return {
       activeIndex: 0,
+      newMessage: {
+        date: "",
+        message: "",
+        status: "sent",
+      },
       contacts: [
         {
           name: "Michele",
@@ -190,7 +195,27 @@ const app = createApp({
     setActiveIndex(newIndex) {
       this.activeIndex = newIndex;
     },
+    getCurrentTime() {
+      const now = new Date();
+      return `${now.getHours()}:${now.getMinutes()}`;
+    },
+    sendMessage() {
+      const newMessage = { ...this.newMessage };
+      newMessage.date = this.getCurrentTime();
+      this.newMessage.message = "";
+      this.activeContact.messages.push(newMessage);
+      setTimeout(this.sendAutomatedResponse, 1000);
+    },
+    sendAutomatedResponse() {
+      const newMessage = {
+        message: "ok",
+        date: this.getCurrentTime(),
+        status: "received",
+      };
+      this.activeContact.messages.push(newMessage);
+    },
   },
+
   mounted() {},
 });
 
