@@ -35,6 +35,9 @@
     <!-- Vue3 cdn -->
     <script src="https://unpkg.com/vue@3"></script>
 
+    <!-- Luxon cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
+
     <!-- link Java Script main -->
     <script type="text/javascript" src="./js/main.js" defer></script>
   </head>
@@ -79,6 +82,7 @@
           <div id="contact-section">
             <div
               v-for="(contact, index) in contacts"
+              v-show="contact.visible"
               @click="setActiveIndex(index)"
               class="contact d-container"
             >
@@ -134,7 +138,7 @@
                 class="message"
               >
                 <span class="message-text"> {{message.message}} </span>
-                <span class="message-time">{{message.date}}</span>
+                <span class="message-time">{{ formatDate(message.date) }}</span>
               </div>
             </div>
           </div>

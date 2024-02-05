@@ -1,4 +1,6 @@
 const { createApp } = Vue;
+const dt = luxon.DateTime;
+
 const app = createApp({
   data() {
     return {
@@ -192,7 +194,7 @@ const app = createApp({
         (message) => message.status == "sent"
       );
       const lastMessage = sentMessages[sentMessages.length - 1];
-      return lastMessage.date;
+      return this.formatDate(lastMessage.date);
     },
     setActiveIndex(newIndex) {
       this.activeIndex = newIndex;
@@ -214,6 +216,13 @@ const app = createApp({
         now.getSeconds() < 10 ? "0" + now.getSeconds() : now.getSeconds();
       return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
     },
+    formatDate(date) {
+      //cambio la formattazione delle date
+      const messageDate = dt.fromFormat(date, "dd/MM/yyyy HH:mm:ss");
+      // trasformo la data in una stringa
+      const messageDateText = messageDate.toLocaleString(dt.TIME_24_SIMPLE);
+      return messageDateText;
+    },
     sendMessage() {
       //interrompo la funzione se l'utente non ha inserito testo nell'input, per evitare che si inviino messaggi vuoti
       if (!this.newMessage.message) return;
@@ -233,16 +242,13 @@ const app = createApp({
       };
       this.activeContact.messages.push(newMessage);
     },
-    filterContact(i) {
-      let contactName = [];
-      contactName += this.contacts[i].name.toLowerCase();
-      console.log(contactName);
-      // console.log("il contact name è: " + contactName);
-      // this.searchedName += this.searchedContact.toLowerCase();
-      // console.log("la search è divenata: " + this.searchedName);
-      // if (contactName != this.searchedName) {
-      //   this.contacts.splice(contactName, 1);
-      // }
+    filterContact() {
+      this.searchedContact;
+      this.contacts.forEach((contact) => {
+        contact.visible = contact.name
+          .toLowerCase()
+          .includes(this.searchedContact.toLowerCase());
+      });
     },
   },
 
