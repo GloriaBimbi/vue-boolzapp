@@ -8,6 +8,8 @@ const app = createApp({
         message: "",
         status: "sent",
       },
+      searchedContact: "",
+      searchedName: "",
       contacts: [
         {
           name: "Michele",
@@ -197,13 +199,30 @@ const app = createApp({
     },
     getCurrentTime() {
       const now = new Date();
-      return `${now.getHours()}:${now.getMinutes()}`;
+
+      //faccio in modo che il formato sia uguale, aggiungendo gli zeri dove necessario
+      const day = now.getDate() < 10 ? "0" + now.getDate() : now.getDate();
+      const month =
+        now.getMonth() + 1 < 10
+          ? "0" + (now.getMonth() + 1)
+          : now.getMonth() + 1;
+      const year = now.getFullYear();
+      const hours = now.getHours() < 10 ? "0" + now.getHours() : now.getHours();
+      const minutes =
+        now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes();
+      const seconds =
+        now.getSeconds() < 10 ? "0" + now.getSeconds() : now.getSeconds();
+      return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
     },
     sendMessage() {
+      //interrompo la funzione se l'utente non ha inserito testo nell'input, per evitare che si inviino messaggi vuoti
+      if (!this.newMessage.message) return;
+      // copio chiò che l'utente inserisce nell'input in una nuova costante che andrà pushata nell'array dei messaggi insieme all'ora dell'invio
       const newMessage = { ...this.newMessage };
       newMessage.date = this.getCurrentTime();
       this.newMessage.message = "";
       this.activeContact.messages.push(newMessage);
+      // invio la risposta automatica dopo 1 secondo
       setTimeout(this.sendAutomatedResponse, 1000);
     },
     sendAutomatedResponse() {
@@ -213,6 +232,17 @@ const app = createApp({
         status: "received",
       };
       this.activeContact.messages.push(newMessage);
+    },
+    filterContact(i) {
+      let contactName = [];
+      contactName += this.contacts[i].name.toLowerCase();
+      console.log(contactName);
+      // console.log("il contact name è: " + contactName);
+      // this.searchedName += this.searchedContact.toLowerCase();
+      // console.log("la search è divenata: " + this.searchedName);
+      // if (contactName != this.searchedName) {
+      //   this.contacts.splice(contactName, 1);
+      // }
     },
   },
 
