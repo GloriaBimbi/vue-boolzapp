@@ -185,7 +185,6 @@ body {
   border-radius: 6px;
   font-size: 10px;
   word-wrap: break-word;
-  overflow: hidden;
 
   display: flex;
   justify-content: space-between;
@@ -195,6 +194,17 @@ body {
 #messages-section .message-text {
   align-self: center;
   padding: 0 10px;
+}
+#messages-section .info {
+  display: flex;
+  justify-content: center;
+}
+
+#messages-section .dropdown-toggle {
+  border: 0;
+  padding: 0;
+  height: 30px;
+  aspect-ratio: 1;
 }
 
 #messages-section .message-time {

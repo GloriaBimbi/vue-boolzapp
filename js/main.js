@@ -186,6 +186,9 @@ const app = createApp({
 
   methods: {
     getLastMessage(messages) {
+      if (messages.length == 0) {
+        return "";
+      }
       const lastMessage = messages[messages.length - 1];
       return lastMessage.message;
     },
@@ -193,6 +196,9 @@ const app = createApp({
       const sentMessages = messages.filter(
         (message) => message.status == "sent"
       );
+      if (messages.length == 0) {
+        return "";
+      }
       const lastMessage = sentMessages[sentMessages.length - 1];
       return this.formatDate(lastMessage.date);
     },
@@ -249,6 +255,9 @@ const app = createApp({
           .toLowerCase()
           .includes(this.searchedContact.toLowerCase());
       });
+    },
+    deleteMessage(i) {
+      this.contacts[this.activeIndex].messages.splice(i, 1);
     },
   },
 
