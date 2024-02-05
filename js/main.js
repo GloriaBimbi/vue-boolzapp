@@ -236,9 +236,11 @@ const app = createApp({
       const newMessage = { ...this.newMessage };
       newMessage.date = this.getCurrentTime();
       this.newMessage.message = "";
-      this.activeContact.messages.push(newMessage);
-      // invio la risposta automatica dopo 1 secondo
-      setTimeout(this.sendAutomatedResponse, 1000);
+      if (newMessage.message.trim().length > 0) {
+        this.activeContact.messages.push(newMessage);
+        // invio la risposta automatica dopo 1 secondo
+        setTimeout(this.sendAutomatedResponse, 1000);
+      }
     },
     sendAutomatedResponse() {
       const newMessage = {
