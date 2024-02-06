@@ -12,6 +12,14 @@ const app = createApp({
       },
       searchedContact: "",
       searchedName: "",
+      randomAnswers: [
+        "davvero?",
+        "bene",
+        "tu come stai?",
+        "ieri è stata una bella giornata",
+        "va bene",
+        "non sono per niente ottimista",
+      ],
       contacts: [
         {
           name: "Michele",
@@ -242,13 +250,22 @@ const app = createApp({
         setTimeout(this.sendAutomatedResponse, 1000);
       }
     },
+    generateRandomNumber(min, max) {
+      arrayElement = Math.floor(Math.random() * (max + min - 1) + 1);
+      console.log(arrayElement);
+      return arrayElement;
+    },
     sendAutomatedResponse() {
       const newMessage = {
-        message: "ok",
+        message:
+          this.randomAnswers[
+            this.generateRandomNumber(0, this.randomAnswers.length - 1)
+          ],
         date: this.getCurrentTime(),
         status: "received",
       };
-      this.activeContact.messages.push(newMessage);
+      console.log(this.randomAnswers.length - 1),
+        this.activeContact.messages.push(newMessage);
     },
     filterContact() {
       this.searchedContact;
